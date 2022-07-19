@@ -18,6 +18,9 @@ public abstract class ValueObjectBase
         object[] components = GetEqualityComponents().ToArray();
         object[]? otherComponents = other?.GetEqualityComponents().ToArray();
 
+        if (otherComponents is null)
+            return 0;
+
         for (int i = 0; i < components.Length; i++)
         {
             int comparison = CompareComponents(components[i], otherComponents[i]);

@@ -1,3 +1,7 @@
+//https://www.youtube.com/watch?v=paQk4oYWyHc
+//https://github.com/tutorialseu/BlazorServerBudgetBook
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

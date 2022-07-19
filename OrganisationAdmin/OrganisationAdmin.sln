@@ -11,19 +11,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrganisationAdmin.Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrganisationAdmin.WebApi", "src\OrganisationAdmin.WebApi\OrganisationAdmin.WebApi.csproj", "{D7E27264-62BF-4109-A0EB-E3801F9915AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganisationAdmin.Core", "src\OrganisationAdmin.Core\OrganisationAdmin.Core.csproj", "{57258DE8-FD98-4C1D-ACF4-37A7703642DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrganisationAdmin.Core", "src\OrganisationAdmin.Core\OrganisationAdmin.Core.csproj", "{57258DE8-FD98-4C1D-ACF4-37A7703642DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganisationAdmin.WebUiRazor", "src\OrganisationAdmin.WebUiRazor\OrganisationAdmin.WebUiRazor.csproj", "{E6FAD932-D7B2-4B04-8021-255367EE0FAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrganisationAdmin.WebUiRazor", "src\OrganisationAdmin.WebUiRazor\OrganisationAdmin.WebUiRazor.csproj", "{E6FAD932-D7B2-4B04-8021-255367EE0FAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functionaltests", "tests\Functionaltests\Functionaltests.csproj", "{89F39CD3-9F0A-45BA-A325-42A74865A882}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functionaltests", "tests\Functionaltests\Functionaltests.csproj", "{89F39CD3-9F0A-45BA-A325-42A74865A882}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integrationtests", "tests\Integrationtests\Integrationtests.csproj", "{CD62FAB1-8603-4503-8317-136ECD02B2F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integrationtests", "tests\Integrationtests\Integrationtests.csproj", "{CD62FAB1-8603-4503-8317-136ECD02B2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unittests", "tests\Unittests\Unittests.csproj", "{7CE0D472-2F4D-49E2-8AB9-FC873B5285A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unittests", "tests\Unittests\Unittests.csproj", "{7CE0D472-2F4D-49E2-8AB9-FC873B5285A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganisationAdmin.WebUiBlazorServer", "src\OrganisationAdmin.WebUiBlazorServer\OrganisationAdmin.WebUiBlazorServer.csproj", "{EFE94EE1-3120-425A-937D-E1CD6FC99F58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrganisationAdmin.WebUiBlazorServer", "src\OrganisationAdmin.WebUiBlazorServer\OrganisationAdmin.WebUiBlazorServer.csproj", "{EFE94EE1-3120-425A-937D-E1CD6FC99F58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganisationAdmin.WebUiRazorComponents", "src\OrganisationAdmin.WebUiRazorComponents\OrganisationAdmin.WebUiRazorComponents.csproj", "{BE5B589E-8714-4C8F-8BFA-05CF45EAAF5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrganisationAdmin.WebUiRazorComponents", "src\OrganisationAdmin.WebUiRazorComponents\OrganisationAdmin.WebUiRazorComponents.csproj", "{BE5B589E-8714-4C8F-8BFA-05CF45EAAF5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
