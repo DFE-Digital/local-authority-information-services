@@ -1,8 +1,7 @@
 ﻿using Ardalis.Specification;
 
-namespace LocalAuthorityInformationServices.SharedKernel.Interfaces
+namespace LocalAuthorityInformationServices.SharedKernel.Interfaces;
+
+public interface IReadRepository<T> : IReadRepositoryBase<T> where T : class, IAggregateRoot
 {
-    public interface IReadRepository<T> : IReadRepositoryBase<T> where T : class, IAggregateRoot
-    {
-    }
 }

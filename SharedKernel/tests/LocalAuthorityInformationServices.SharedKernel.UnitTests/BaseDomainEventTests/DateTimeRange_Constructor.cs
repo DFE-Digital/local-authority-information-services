@@ -1,21 +1,17 @@
-﻿using System;
-using FluentAssertions;
-using LocalAuthorityInformationServices.SharedKernel;
-using Xunit;
+﻿using FluentAssertions;
 
-namespace LocalAuthorityInformationServices.SharedKernel.UnitTests.BaseDomainEventTests
+namespace LocalAuthorityInformationServices.SharedKernel.UnitTests.BaseDomainEventTests;
+
+public class BaseDomainEvent_Constructor
 {
-    public class BaseDomainEvent_Constructor
+    public class TestEvent : DomainEventBase
+    { }
+
+    [Fact]
+    public void SetsTimeToCurrentTime()
     {
-        public class TestEvent : BaseDomainEvent
-        { }
+        var newEvent = new TestEvent();
 
-        [Fact]
-        public void SetsTimeToCurrentTime()
-        {
-            var newEvent = new TestEvent();
-
-            newEvent.DateOccurred.Should().BeCloseTo(DateTime.UtcNow, new TimeSpan(10000));
-        }
+        newEvent.DateOccurred.Should().BeCloseTo(DateTime.UtcNow, new TimeSpan(100000));
     }
 }

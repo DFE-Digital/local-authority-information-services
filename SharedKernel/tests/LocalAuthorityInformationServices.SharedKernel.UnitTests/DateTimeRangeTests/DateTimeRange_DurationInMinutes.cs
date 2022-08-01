@@ -1,17 +1,14 @@
-﻿using System;
-using FluentAssertions;
-using Xunit;
+﻿using FluentAssertions;
 
-namespace LocalAuthorityInformationServices.SharedKernel.UnitTests.DateTimeRangeTests
+namespace LocalAuthorityInformationServices.SharedKernel.UnitTests.DateTimeRangeTests;
+
+public class DateTimeRange_DurationInMinutes
 {
-    public class DateTimeRange_DurationInMinutes
+    [Fact]
+    public void Returns60GivenOneHourDifference()
     {
-        [Fact]
-        public void Returns60GivenOneHourDifference()
-        {
-            var dtr = new DateTimeRange(DateTimes.TestDateTime, TimeSpan.FromHours(1));
+        var dtr = new DateTimeRange(DateTimes.TestDateTime, TimeSpan.FromHours(1));
 
-            dtr.DurationInMinutes().Should().Be(60);
-        }
+        dtr.DurationInMinutes().Should().Be(60);
     }
 }

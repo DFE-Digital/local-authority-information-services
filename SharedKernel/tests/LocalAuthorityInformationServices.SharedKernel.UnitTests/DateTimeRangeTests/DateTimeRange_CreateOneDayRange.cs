@@ -1,18 +1,15 @@
 ﻿using FluentAssertions;
-using LocalAuthorityInformationServices.SharedKernel;
-using Xunit;
 
-namespace LocalAuthorityInformationServices.SharedKernel.UnitTests.DateTimeRangeTests
+namespace LocalAuthorityInformationServices.SharedKernel.UnitTests.DateTimeRangeTests;
+
+public class DateTimeRange_CreateOneDayRange
 {
-    public class DateTimeRange_CreateOneDayRange
+    [Fact]
+    public void CreatesRangeWithStartDateLastingOneDay()
     {
-        [Fact]
-        public void CreatesRangeWithStartDateLastingOneDay()
-        {
-            var dtr = DateTimeRange.CreateOneDayRange(DateTimes.TestDateTime);
+        var dtr = DateTimeRange.CreateOneDayRange(DateTimes.TestDateTime);
 
-            dtr.Start.Should().Be(DateTimes.TestDateTime);
-            dtr.End.Should().Be(dtr.Start.AddDays(1));
-        }
+        dtr.Start.Should().Be(DateTimes.TestDateTime);
+        dtr.End.Should().Be(dtr.Start.AddDays(1));
     }
 }

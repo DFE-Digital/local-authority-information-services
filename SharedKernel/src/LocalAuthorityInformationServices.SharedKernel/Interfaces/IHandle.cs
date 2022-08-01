@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace LocalAuthorityInformationServices.SharedKernel.Interfaces
+namespace LocalAuthorityInformationServices.SharedKernel.Interfaces;
+
+public interface IHandle<T> where T : DomainEventBase
 {
-    public interface IHandle<T> where T : BaseDomainEvent
-    {
-        Task HandleAsync(T args);
-    }
+    Task HandleAsync(T args);
 }

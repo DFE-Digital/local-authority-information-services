@@ -1,25 +1,54 @@
+using Autofac.Extensions.DependencyInjection;
+using MediatR;
+using Microsoft.OpenApi.Models;
+using OrganisationAdmin.Core.Concretions.Entities.Aggregates;
+using OrganisationAdmin.Infrastructure.Persistence.Repository;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+ConfigurWebApplicationBuilderHost(builder);
+ConfigurWebApplicationBuilderServices(builder);
 
-// Add services to the container.
+var webApplication = builder.Build();
+ConfigureWebApplication(webApplication);
+webApplication.Run();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+static void ConfigurWebApplicationBuilderHost(WebApplicationBuilder builder)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 }
 
-app.UseHttpsRedirection();
+static void ConfigurWebApplicationBuilderServices(WebApplicationBuilder builder)
+{
+    // Add services to the container.
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "OrganisationAdmin.Ui.Web.Api", Version = "v1" });
+        c.EnableAnnotations();
+    });
 
-app.UseAuthorization();
+    var assemblies = new Assembly[]
+          {
+        typeof(Program).Assembly,
+        typeof(ApplicationDbContext).Assembly,
+        typeof(Organization).Assembly
+          };
+    builder.Services.AddMediatR(assemblies);
+}
 
-app.MapControllers();
+static void ConfigureWebApplication(WebApplication webApplication)
+{
+    // Configure the HTTP request pipeline.
+    if (webApplication.Environment.IsDevelopment())
+    {
+        webApplication.UseSwagger();
+        webApplication.UseSwaggerUI();
+    }
 
-app.Run();
+    webApplication.UseHttpsRedirection();
+    webApplication.UseAuthorization();
+    webApplication.MapControllers();
+}

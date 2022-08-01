@@ -2,85 +2,84 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LocalAuthorityInformationServices.SharedKernel
+namespace LocalAuthorityInformationServices.SharedKernel;
+
+/// <summary>
+/// See: https://enterprisecraftsmanship.com/posts/value-object-better-implementation/
+/// </summary>
+[Serializable]
+public abstract class ValueObject : ValueObjectBase, IComparable, IComparable<ValueObject>
 {
-    /// <summary>
-    /// See: https://enterprisecraftsmanship.com/posts/value-object-better-implementation/
-    /// </summary>
-    [Serializable]
-    public abstract class ValueObject : ValueObjectBase, IComparable, IComparable<ValueObject>
+    private int? _cachedHashCode;
+
+    public override bool Equals(object? obj)
     {
-        private int? _cachedHashCode;
+        if (obj == null)
+            return false;
 
-        public override bool Equals(object? obj)
+        if (GetUnproxiedType(this) != GetUnproxiedType(obj))
+            return false;
+
+        var valueObject = (ValueObject)obj;
+
+        return GetEqualityComponents().SequenceEqual(valueObject.GetEqualityComponents());
+    }
+
+    public override int GetHashCode()
+    {
+        if (!_cachedHashCode.HasValue)
         {
-            if (obj == null)
-                return false;
-
-            if (GetUnproxiedType(this) != GetUnproxiedType(obj))
-                return false;
-
-            var valueObject = (ValueObject)obj;
-
-            return GetEqualityComponents().SequenceEqual(valueObject.GetEqualityComponents());
-        }
-
-        public override int GetHashCode()
-        {
-            if (!_cachedHashCode.HasValue)
-            {
-                _cachedHashCode = GetEqualityComponents()
-                    .Aggregate(1, (current, obj) =>
+            _cachedHashCode = GetEqualityComponents()
+                .Aggregate(1, (current, obj) =>
+                {
+                    unchecked
                     {
-                        unchecked
-                        {
-                            return current * 23 + (obj?.GetHashCode() ?? 0);
-                        }
-                    });
-            }
-
-            return _cachedHashCode.Value;
+                        return current * 23 + (obj?.GetHashCode() ?? 0);
+                    }
+                });
         }
 
-        public int CompareTo(ValueObject? other)
-        {
-            return CompareTo(other as object);
-        }
+        return _cachedHashCode.Value;
+    }
 
-        public static bool operator ==(ValueObject a, ValueObject b)
-        {
-            if (a is null && b is null)
-                return true;
+    public int CompareTo(ValueObject? other)
+    {
+        return CompareTo(other as object);
+    }
 
-            if (a is null || b is null)
-                return false;
+    public static bool operator ==(ValueObject a, ValueObject b)
+    {
+        if (a is null && b is null)
+            return true;
 
-            return a.Equals(b);
-        }
+        if (a is null || b is null)
+            return false;
 
-        public static bool operator !=(ValueObject a, ValueObject b)
-        {
-            return !(a == b);
-        }
+        return a.Equals(b);
+    }
 
-        public static bool operator <(ValueObject left, ValueObject right)
-        {
-            return ReferenceEquals(left, null) ? !ReferenceEquals(right, null) : left.CompareTo(right) < 0;
-        }
+    public static bool operator !=(ValueObject a, ValueObject b)
+    {
+        return !(a == b);
+    }
 
-        public static bool operator <=(ValueObject left, ValueObject right)
-        {
-            return ReferenceEquals(left, null) || left.CompareTo(right) <= 0;
-        }
+    public static bool operator <(ValueObject left, ValueObject right)
+    {
+        return ReferenceEquals(left, null) ? !ReferenceEquals(right, null) : left.CompareTo(right) < 0;
+    }
 
-        public static bool operator >(ValueObject left, ValueObject right)
-        {
-            return !ReferenceEquals(left, null) && left.CompareTo(right) > 0;
-        }
+    public static bool operator <=(ValueObject left, ValueObject right)
+    {
+        return ReferenceEquals(left, null) || left.CompareTo(right) <= 0;
+    }
 
-        public static bool operator >=(ValueObject left, ValueObject right)
-        {
-            return ReferenceEquals(left, null) ? ReferenceEquals(right, null) : left.CompareTo(right) >= 0;
-        }
+    public static bool operator >(ValueObject left, ValueObject right)
+    {
+        return !ReferenceEquals(left, null) && left.CompareTo(right) > 0;
+    }
+
+    public static bool operator >=(ValueObject left, ValueObject right)
+    {
+        return ReferenceEquals(left, null) ? ReferenceEquals(right, null) : left.CompareTo(right) >= 0;
     }
 }
